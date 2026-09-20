@@ -1,0 +1,20 @@
+[VOLATILITY 3 MEMORY FORENSICS REPORT]
+CASE ID: CASE-2026-09
+EVIDENCE ACQUISITION: Physical Memory Image (memdump.raw)
+HOST: WS-FINANCE-04 (192.168.10.88)
+SEIZURE TIMESTAMP: 2026-09-07 03:15:22 UTC
+FORENSIC TOOL: Volatility Framework 3.2.0 (Forensic Write-Blocked)
+
+DETECTION SUMMARY:
+------------------------------------------------------------------------
+Plugin: windows.malfind
+Process: lsass.exe (PID: 648, PPID: 480)
+Memory Protection: PAGE_EXECUTE_READWRITE (0x40)
+Base Address: 0x0000018f3d120000
+Hex Dump Snippet:
+4d 5a 90 00 03 00 00 00 04 00 00 00 ff ff 00 00  MZ..............
+b8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  ........@.......
+Injected Artifact: Meterpreter Reflective DLL Loader identified in unbacked VAD section.
+
+STATUS: CRITICAL THREAT CONFIRMED - CREDENTIAL DUMPING IN PROGRESS
+[FORENSIC CHAIN OF CUSTODY SHA-256 PRESERVED]

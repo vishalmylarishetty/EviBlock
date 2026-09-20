@@ -1,0 +1,19 @@
+Delivered-To: cfo-finance@techcorp-defense.com
+Received: by 2002:a05:6512:498b:0:0:0:0 with SMTP id v11csp1094892
+Return-Path: <payroll-update@secure-techcorp-portal.xyz>
+Authentication-Results: mx.techcorp.com;
+       spf=fail (sender IP 185.220.101.5 is unauthorized) smtp.mailfrom=payroll-update@secure-techcorp-portal.xyz;
+       dkim=fail header.i=@secure-techcorp-portal.xyz;
+       dmarc=fail (p=REJECT)
+From: "Dr. Rajesh Sharma, CEO" <ceo.rajesh@techcorp-portal.xyz>
+To: "Sunil Verma, VP Finance" <cfo-finance@techcorp-defense.com>
+Subject: URGENT: Confidential Acquisition Wire Instruction - CASE-2026-09
+Date: Sun, 07 Sep 2026 05:14:02 +0530
+Message-ID: <20260907051402.8912739@secure-techcorp-portal.xyz>
+X-Forensic-Seizure: CYBER_CRIME_DIVISION_EXHIBIT_09
+
+Sunil,
+Please immediately wire USD $450,000 to the attached Hong Kong escrow account for Project Titan before the close of Asian markets today.
+Do not call my personal phone as I am boarding an international flight.
+
+Attached: Wire_Invoice_SWIFT_Doc.pdf.exe [MALICIOUS DUAL-EXTENSION BLOCKED]

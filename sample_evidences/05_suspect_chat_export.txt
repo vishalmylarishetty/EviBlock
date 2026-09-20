@@ -1,0 +1,9 @@
+[DIGITAL FORENSIC EXTRACTION - UFED CELLEBRITE REPORT]
+Device: Samsung Galaxy S23 (IMEI: 864920058291042)
+Application: Signal Private Messenger
+Case Reference: CASE-2026-09 / WARRANT-882
+
+[2026-09-06 23:45:10] Suspect (User-A): Did you disable the CCTV in Server Room !!s
+[2026-09-06 23:45:40] Insider (User-B): Yes, biometric reader override key is 9902#. Don't take more than 20 mins.
+[2026-09-06 23:46:05] Suspect (User-A): Got the SSD drives. Transferring the payment now.
+[2026-09-06 23:46:30] Insider (User-B): Delete this chat immediately after reading.

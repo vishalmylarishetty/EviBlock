@@ -1,0 +1,10 @@
+!!! ALL YOUR FILES HAVE BEEN ENCRYPTED !!!
+Case ID: CASE-2026-09
+Target Machine: ACCOUNTS-SRV-01 (IP: 192.168.10.45)
+Ransomware Variant: LockBit-3.0-Custom
+Seized Date: 2026-09-07
+
+Your private databases, financials, and forensic evidence have been locked using AES-256 + RSA-4096.
+Decryption Key ID: 8F7B-9921-AA4C-0021
+Contact Telegram: @shadow_broker_dark
+Do NOT modify encrypted files or hash verification will fail.

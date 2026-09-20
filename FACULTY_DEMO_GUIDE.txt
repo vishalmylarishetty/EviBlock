@@ -1,0 +1,117 @@
+================================================================================
+   FORENSICCHAIN — FACULTY PRESENTATION CHEATSHEET
+================================================================================
+
+HOW TO RUN THE APP TOMORROW (1-CLICK):
+--------------------------------------------------------------------------------
+1. Just DOUBLE-CLICK "START_APP.bat" in this folder!
+   - It will automatically start Ganache (port 7545)
+   - It will automatically launch the Backend server
+   - It will automatically open Google Chrome at: http://localhost:5000
+
+================================================================================
+LOGIN ROLES & CREDENTIALS
+================================================================================
+1. System Administrator (Superuser):
+   Email:    admin@forensic.local
+   Password: Admin@12345
+   Role:     admin (Master admin: System/Audit/Advanced sections, Merkle batching)
+
+2. Police Officer / Investigator:
+   Email:    james.witness@forensic.gov (Police) OR sarah.investigator@forensic.gov (Investigator)
+   Password: Password123!
+   Role:     police / investigator (Seizure upload, custody tracking, warrant search)
+
+3. Independent Sworn Witness:
+   Email:    witness@forensic.gov
+   Password: Password123!
+   Role:     witness (Seizure attestation co-signing, pending attestations, custody review)
+
+4. Forensic Analyst:
+   Email:    analyst@forensic.gov
+   Password: Password123!
+   Role:     analyst (Integrity verification, child evidence branching, chain of custody)
+
+5. Judge / Court Authority:
+   Email:    thomas.court@forensic.gov
+   Password: Password123!
+   Role:     court_authority (Evidence registry, sealing/verification, Smart Warrants)
+
+================================================================================
+SAMPLE EVIDENCE FILES (READY TO UPLOAD):
+================================================================================
+Located in folder: sample_evidences\
+  - 01_cctv_access_log.log                  (Biometric server room door access log)
+  - 02_ransomware_demand_note.txt           (LockBit 3.0 cyber extortion note)
+  - 03_bank_fraud_transfer.csv              (Fraudulent bank transactions ledger)
+  - 04_network_intrusion_alert.log          (SSH brute-force and root exploit dump)
+  - 05_suspect_chat_export.txt              (Signal private messenger chat dump)
+  - 06_malware_indicators_of_compromise.json(Malware C2 servers & SHA-256 IOCs)
+
+================================================================================
+STEP-BY-STEP FACULTY PRESENTATION FLOW:
+================================================================================
+
+PHASE 1: Court Authority (Judge Wayne)
+1. Log in with: thomas.court@forensic.gov / Password123!
+2. Go to "Smart Warrants" in left sidebar.
+3. Issue warrant:
+   - Warrant No: WR-2026-COURT-99
+   - Case ID:    CASE-2026-09
+   - Duration:   24 Hours (or 1 Minute for quick test)
+   - Click: "Issue Smart Warrant On-Chain"
+4. Log out (bottom left icon).
+
+PHASE 2: Field Seizure (Officer Gordon)
+1. Log in with: james.witness@forensic.gov / Password123!
+2. Go to "Upload Evidence".
+3. Upload file: sample_evidences\01_cctv_access_log.log
+4. Fill form:
+   - Case ID:  CASE-2026-09
+   - Warrant:  WR-2026-COURT-99
+   - GPS:      17.3850, 78.4867
+   - Device:   DEV-SERVER-ROOM-04
+   - Witness:  Select "Det. Sarah Connor (investigator)"
+5. Click "Initiate Seizure Handshake".
+6. Status becomes "Pending Witness Approval". Log out.
+
+PHASE 3: Witness Attestation (Det. Sarah Connor)
+1. Log in with: sarah.investigator@forensic.gov / Password123!
+2. Go to "Evidence List".
+3. Click "⚡ Approve" on the uploaded item.
+4. Enter note: "Physical extraction verified on-site. Sealed in bag #B881."
+5. Click OK. Status becomes "Active" and SHA-256 is permanently anchored on-chain!
+
+PHASE 4: Chain of Custody (Forensic Lab)
+1. Go to "Chain of Custody" in sidebar.
+2. Enter the Evidence ID (EV-XXXXXXXX).
+3. Select Action "Analyzed", add note: "Memory decompiled in lab. Keypad bypass confirmed."
+4. Click "Add" (creates immutable custody record).
+5. Log out.
+
+PHASE 5: Courtroom Presentation (Judge Wayne)
+1. Log in with: thomas.court@forensic.gov / Password123!
+2. Go to "Verify Evidence" in sidebar.
+3. Select evidence -> Click "Verify Integrity".
+4. Show GREEN banner: "VERIFIED / INTEGRITY CONFIRMED".
+   Stored Hash matches Blockchain Hash bit-for-bit!
+
+BONUS "AHA!" MOMENT: Tamper Detection
+1. Open evidence_storage\ in File Explorer.
+2. Open the file in Notepad, change one letter, and Save (Ctrl + S).
+3. In Chrome, click "Verify Integrity" again.
+4. Watch it instantly flip to RED: "TAMPER DETECTED / INTEGRITY BREACH"!
+
+RESEARCH FEATURE 1: Merkle Batching
+1. Go to "Merkle Batching" in sidebar.
+2. Select ALL 6 files from sample_evidences\ folder.
+3. Click "Generate Merkle Tree & Commit Root On-Chain".
+4. Click "Auto-Fill in Verifier Form & Verify".
+5. Show GREEN banner: "VALID PROOF! Inclusion verified on-chain log structure."
+   Explain: Reduces N on-chain writes to 1 write (huge gas savings).
+
+RESEARCH FEATURE 2: Smart Warrants
+1. Go to "Smart Warrants" in sidebar.
+2. Issue a 1-Minute warrant.
+3. Watch the live timer count down on screen (59s, 57s, 55s...) until it flips to RED "EXPIRED"!
+================================================================================

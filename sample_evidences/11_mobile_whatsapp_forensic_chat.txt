@@ -1,0 +1,22 @@
+[CELLEBRITE UFED 4PC - MOBILE FORENSIC EXTRACTION]
+CASE: CASE-2026-09
+DEVICE: Apple iPhone 15 Pro Max (Model A3106)
+IMEI: 354890119283741
+PHYSICAL EXTRACTION METHOD: Full File System via checkm8/checkra1n hardware probe
+DATABASE: /private/var/mobile/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApp.shared/ChatStorage.sqlite
+
+MESSAGE LOG DUMP (CHAT_ID: +919884102931_SUSPECT):
+-------------------------------------------------------------------------------------
+[2026-09-07 00:45:12 UTC] Suspect (+919884102931):
+Server room keycard duplicated. Maintenance door 3 bypass scheduled for 02:15 AM.
+
+[2026-09-07 00:46:05 UTC] Co-Conspirator (+447911123456):
+Ensure flash drive with LockBit payload is plugged into DC-ROOT-01 before exit.
+
+[2026-09-07 02:36:10 UTC] Suspect (+919884102931):
+Job done. Exfiltrated S3 tokens and launched encryption. Wiping local bash history now.
+
+[2026-09-07 02:37:00 UTC] Co-Conspirator (+447911123456):
+Transferred 100 ETH to mixer deposit pool. Clean the burner device.
+-------------------------------------------------------------------------------------
+[EXTRACTED ARTIFACT VALIDATED - CYBER FORENSICS CRIME LAB EXHIBIT #11]

@@ -1,0 +1,28 @@
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAJQABHYP3EXAMPLE",
+    "arn": "arn:aws:iam::123456789012:user/compromised-dev-key",
+    "accountId": "123456789012",
+    "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+    "userName": "build_automation_svc"
+  },
+  "eventTime": "2026-09-07T05:42:19Z",
+  "eventSource": "s3.amazonaws.com",
+  "eventName": "GetObject",
+  "awsRegion": "ap-south-1",
+  "sourceIPAddress": "194.26.29.112",
+  "userAgent": "aws-cli/2.15.0 Python/3.11.6 Linux/x86_64 botocore/2.4.2",
+  "requestParameters": {
+    "bucketName": "defense-customer-biometrics-classified",
+    "key": "exports/2026/biometric_aadhaar_passports_raw.tar.gz"
+  },
+  "responseElements": null,
+  "additionalEventData": {
+    "bytesTransferredOut": 1492819200,
+    "AuthenticationMethod": "AuthHeader",
+    "CipherSuite": "ECDHE-RSA-AES128-GCM-SHA256"
+  },
+  "forensicNote": "ANOMALOUS TOR EXIT NODE DATA EXFILTRATION DETECTED"
+}

@@ -1,0 +1,9 @@
+[SIEM FORENSIC LOG EXPORT - INCIDENT RESPONSE]
+Incident: INC-2026-4491
+Threat Actor: Advanced Persistent Threat (APT-29 Variant)
+Protocol: TCP / HTTPS Tunneling
+
+[2026-09-07 03:02:11] ALERT: Brute force detected on SSH port 22 from 185.220.101.5
+[2026-09-07 03:02:45] WARNING: 1,420 failed login attempts in 30 seconds
+[2026-09-07 03:03:01] CRITICAL: Successful escalation to UID 0 (root) via CVE-2024-6387
+[2026-09-07 03:03:30] DATA_EXFILTRATION: 42.5 MB outbound to drop-server 194.26.29.112

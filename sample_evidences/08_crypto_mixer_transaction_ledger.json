@@ -1,0 +1,26 @@
+{
+  "case_id": "CASE-2026-09",
+  "evidence_type": "CRYPTOCURRENCY_ONCHAIN_ANALYSIS",
+  "blockchain_network": "Ethereum Mainnet",
+  "analyzed_contract": "0xd90e2f925DA726b50C4Ed8D0Fb90Ad053324F31b",
+  "contract_name": "Tornado.Cash: 100 ETH Mixer",
+  "transactions": [
+    {
+      "tx_hash": "0x7a8b11c990df34123ae8910cb4519921008129ad4512998abcf8812700192abb",
+      "timestamp": "2026-09-07T04:12:00Z",
+      "origin_address": "0x3Fa901842B1cdeA8892182910AA8129994bF1901",
+      "deposit_amount_eth": 100.0,
+      "relayer_fee_eth": 0.15,
+      "anonymity_pool_id": "0x12a9c"
+    },
+    {
+      "tx_hash": "0x992b18aa4012bbcdf91298841029384bbad40192837190283719283719283719",
+      "timestamp": "2026-09-07T04:45:18Z",
+      "withdrawal_stealth_address": "0x8912AA4b12389172401823901928374829103981",
+      "withdrawn_amount_eth": 99.85,
+      "mixer_hop_count": 3
+    }
+  ],
+  "forensic_verdict": "ILLICIT_RANSOM_PAYMENT_LAUNDERED",
+  "investigator_badge": "INV-7712-CYBER"
+}
