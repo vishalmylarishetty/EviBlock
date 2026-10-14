@@ -69,8 +69,10 @@ except Exception as e:
 print("\n[3/4] Deploying contract ...")
 try:
     contract  = w3.eth.contract(abi=abi, bytecode=bytecode)
-    tx_hash   = contract.constructor().transact({"from": deployer, "gas": 3_000_000})
+    tx_hash   = contract.constructor().transact({"from": deployer, "gas": 6_000_000})
     receipt   = w3.eth.wait_for_transaction_receipt(tx_hash, timeout=120)
+    if receipt.status == 0:
+        raise RuntimeError("Deployment failed with status 0")
     addr      = receipt.contractAddress
     print(f"  Deployed at : {addr}")
     print(f"  Tx hash     : {receipt.transactionHash.hex()}")

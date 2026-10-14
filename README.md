@@ -53,7 +53,7 @@ ForensicChain/
 |   +-- app.py                  # Flask REST API — main entry point
 |   +-- blockchain.py           # Web3.py Ethereum/Ganache interaction layer
 |   +-- database.py             # SQLite database helpers & schema
-|   +-- forensic_chain.db       # SQLite database (auto-created)
+|   +-- eviblock.db             # SQLite database (auto-created)
 |   +-- contract_address.txt    # Deployed smart contract address
 |
 +-- contracts/
@@ -159,7 +159,7 @@ GANACHE_URL=http://127.0.0.1:7545
 CONTRACT_ADDRESS=0x5b1869D9A4C187F2EAa108f3062412ecf0526b24
 SECRET_KEY=forensic-chain-secret-key-2024
 PORT=5000
-DATABASE_URL=sqlite:///./backend/forensic_chain.db
+DATABASE_URL=sqlite:///./backend/eviblock.db
 ADMIN_EMAIL=admin@forensic.local
 ADMIN_PASSWORD=Admin@12345
 ```
@@ -188,7 +188,7 @@ The Flask server serves the frontend directly — no separate frontend build ste
 | `CONTRACT_ADDRESS` | *(from contract_address.txt)* | Deployed Evidence contract address |
 | `SECRET_KEY` | `forensic-chain-secret-key-2024` | Flask session secret |
 | `PORT` | `5000` | Flask server port |
-| `DATABASE_URL` | `sqlite:///./backend/forensic_chain.db` | SQLite DB path |
+| `DATABASE_URL` | `sqlite:///./backend/eviblock.db` | SQLite DB path |
 | `ADMIN_EMAIL` | `admin@forensic.local` | Admin account email |
 | `ADMIN_PASSWORD` | `Admin@12345` | Admin account password |
 | `JWT_SECRET` | `forensic-chain-jwt-secret-key-2024` | JWT signing secret |

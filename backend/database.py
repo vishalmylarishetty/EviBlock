@@ -1,6 +1,7 @@
 import os
 import re
 import sqlite3
+from datetime import datetime, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -17,7 +18,7 @@ load_dotenv(PROJECT_ROOT / ".env")
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 DB_DIR = Path(__file__).resolve().parent
-SQLITE_PATH = str(DB_DIR / "forensic_chain.db")
+SQLITE_PATH = str(DB_DIR / "eviblock.db")
 
 if not DATABASE_URL:
     DATABASE_URL = f"sqlite:///{SQLITE_PATH}"
@@ -95,6 +96,12 @@ def get_db():
     db_file = SQLITE_PATH
     if DATABASE_URL and DATABASE_URL.startswith("sqlite:///"):
         custom = DATABASE_URL.replace("sqlite:///", "")
+        if not os.path.isabs(custom):
+            candidate = (PROJECT_ROOT / custom).resolve()
+            if candidate.exists():
+                custom = str(candidate)
+            elif (DB_DIR / custom).resolve().exists():
+                custom = str((DB_DIR / custom).resolve())
         if os.path.exists(custom):
             db_file = custom
         else:
@@ -642,6 +649,7 @@ def save_evidence(
     witness_signed_by = metadata.get("witness_signed_by")
     witness_signed_at = metadata.get("witness_signed_at")
     status = "pending_witness" if witness_required_id else "active"
+    created_at = metadata.get("created_at") or datetime.now(timezone.utc).isoformat()
 
     conn = get_db()
     cursor = conn.cursor()
@@ -650,8 +658,8 @@ def save_evidence(
             (evidence_id, file_name, file_path, file_size, file_hash,
              case_id, warrant_number, source_gps, source_device_id,
              description, uploaded_by, tx_hash, status, is_private,
-             parent_evidence_id, witness_required_id, witness_signed_by, witness_signed_at)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+             parent_evidence_id, witness_required_id, witness_signed_by, witness_signed_at, created_at)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, (
         evidence_id,
         file_name,
@@ -671,6 +679,7 @@ def save_evidence(
         witness_required_id,
         witness_signed_by,
         witness_signed_at,
+        created_at,
     ))
     conn.commit()
     conn.close()
@@ -811,24 +820,26 @@ def update_evidence_details(evidence_id, description=None, file_name=None, file_
 
 
 def mark_evidence_witness_signed(evidence_id, witness_user_id, tx_hash):
+    signed_at = datetime.now(timezone.utc).isoformat()
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute(
         """
         UPDATE evidence
         SET witness_signed_by = %s,
-            witness_signed_at = CURRENT_TIMESTAMP,
+            witness_signed_at = %s,
             tx_hash = %s,
             status = 'active'
         WHERE evidence_id = %s
         """,
-        (witness_user_id, tx_hash, evidence_id),
+        (witness_user_id, signed_at, tx_hash, evidence_id),
     )
     conn.commit()
     conn.close()
 
 
 def seal_evidence(evidence_id, sealed_by):
+    sealed_at = datetime.now(timezone.utc).isoformat()
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute(
@@ -836,11 +847,11 @@ def seal_evidence(evidence_id, sealed_by):
         UPDATE evidence
         SET is_sealed = TRUE,
             sealed_by = %s,
-            sealed_at = CURRENT_TIMESTAMP,
+            sealed_at = %s,
             status = 'sealed'
         WHERE evidence_id = %s
         """,
-        (sealed_by, evidence_id),
+        (sealed_by, sealed_at, evidence_id),
     )
     conn.commit()
     updated = cursor.rowcount > 0
@@ -1217,15 +1228,17 @@ def get_touched_evidence_ids(user_id):
     return [row["evidence_id"] for row in rows]
 
 
-def add_system_log(user_id, event_type, message, metadata=""):
+def add_system_log(user_id, event_type, message, metadata="", created_at=None):
+    if not created_at:
+        created_at = datetime.now(timezone.utc).isoformat()
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute(
         """
-        INSERT INTO system_logs (user_id, event_type, message, metadata)
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO system_logs (user_id, event_type, message, metadata, created_at)
+        VALUES (%s, %s, %s, %s, %s)
         """,
-        (user_id, event_type, message, metadata),
+        (user_id, event_type, message, metadata, created_at),
     )
     conn.commit()
     conn.close()
@@ -1354,13 +1367,15 @@ def approve_admin_action(action_id, approver_id):
 
 # ── Custody Logs ───────────────────────────────────────────────────────────
 
-def add_custody_log(evidence_id, action, user_id, note="", tx_hash=""):
+def add_custody_log(evidence_id, action, user_id, note="", tx_hash="", created_at=None):
+    if not created_at:
+        created_at = datetime.now(timezone.utc).isoformat()
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute("""
-        INSERT INTO custody_logs (evidence_id, action, user_id, note, tx_hash)
-        VALUES (%s, %s, %s, %s, %s)
-    """, (evidence_id, action, user_id, note, tx_hash))
+        INSERT INTO custody_logs (evidence_id, action, user_id, note, tx_hash, created_at)
+        VALUES (%s, %s, %s, %s, %s, %s)
+    """, (evidence_id, action, user_id, note, tx_hash, created_at))
     conn.commit()
     conn.close()
 

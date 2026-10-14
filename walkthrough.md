@@ -97,7 +97,7 @@ SUCCESS: All 9 lifecycle stages successfully recorded & confirmed on blockchain!
 All changes across:
 - `backend/app.py`
 - `backend/blockchain.py`
-- `backend/forensic_chain.db`
+- `backend/eviblock.db`
 - `frontend/dashboard.html`
 
 have been fully synchronized to `c:\Users\SAI SRI\Downloads\mini vm\vishal\`.

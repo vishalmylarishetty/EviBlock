@@ -333,11 +333,26 @@ def db_fallback_verify_result(evidence_id, current_hash):
     }, None
 
 
+def _parse_ts_to_date(val):
+    if not val:
+        return None
+    if isinstance(val, datetime):
+        return val.date()
+    try:
+        s = str(val).strip().replace("Z", "+00:00")
+        if " " in s and "T" not in s:
+            s = s.replace(" ", "T")
+        return datetime.fromisoformat(s).date()
+    except Exception:
+        return None
+
+
 def append_system_timeline_events(timeline, system_logs, evidence_created_at):
-    evidence_day = evidence_created_at.date() if evidence_created_at else None
+    evidence_day = _parse_ts_to_date(evidence_created_at)
     for entry in system_logs:
         ts = entry.get("created_at")
-        if evidence_day and ts and ts.date() != evidence_day:
+        entry_day = _parse_ts_to_date(ts)
+        if evidence_day and entry_day and entry_day != evidence_day:
             continue
         timeline.append(
             {
@@ -1031,7 +1046,7 @@ def upload_evidence():
         app.logger.warning("Upload evidence blockchain registration fallback: %s", bc_err)
         tx_meta = offline_tx_meta()
 
-    tx_hash = tx_meta["tx_hash"]
+    upload_time = datetime.now(timezone.utc).isoformat()
 
     db.save_evidence(
         evidence_id,
@@ -1048,6 +1063,7 @@ def upload_evidence():
         source_device_id=form_fields["source_device_id"],
         is_private=form_fields["is_private"],
         witness_required_id=witness_user_id_int,
+        created_at=upload_time,
     )
 
     db.add_custody_log(
@@ -1056,6 +1072,7 @@ def upload_evidence():
         session["user_id"],
         f"Seizure initiated under warrant {form_fields['warrant_number']}. Awaiting witness signature.",
         tx_hash,
+        created_at=upload_time,
     )
 
     return jsonify(
@@ -1067,6 +1084,8 @@ def upload_evidence():
             "status": "pending_witness",
             "witness_required_id": witness_user_id_int,
             "witness_required_name": witness["name"],
+            "created_at": upload_time,
+            "tx_metadata": tx_meta,
             "seizure_metadata": {
                 "case_id": form_fields["case_id"],
                 "warrant_number": form_fields["warrant_number"],
